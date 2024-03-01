@@ -2,7 +2,22 @@
 BUILD_START=$(date +"%s")
 tcdir=${HOME}/android/TOOLS/GCC
 
-sudo apt install device-tree-compiler ccache bc
+check_package() { command -v $1 &>/dev/null; }
+
+install_packages_apt() { sudo apt update && sudo apt install -y $@; }
+
+install_if_missing() {
+    if ! check_package $1; then
+        echo "$1 not found. Installing..."
+        if check_package apt-get; then install_packages_apt $1; else echo "Unsupported package manager. Please install $1 manually."; fi
+    fi
+}
+
+install_if_missing dtc
+install_if_missing ccache
+install_if_missing bc
+
+echo "All required packages are installed."
 
 [ -d "out" ] && rm -rf out && mkdir -p out || mkdir -p out
 
