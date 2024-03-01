@@ -39,6 +39,8 @@ make    O=out \
         CC="ccache $tcdir/los-4.9-64/bin/aarch64-linux-android-gcc" \
         CROSS_COMPILE=aarch64-linux-android- \
         CROSS_COMPILE_ARM32=arm-linux-androideabi- \
+        CONFIG_LOCALVERSION="lucid" \
+        CONFIG_LOCALVERSION_AUTO=n \
         CONFIG_NO_ERROR_ON_MISMATCH=y \
         CONFIG_DEBUG_SECTION_MISMATCH=y \
         -j$(nproc --all) || exit
