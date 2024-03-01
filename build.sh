@@ -2,6 +2,8 @@
 BUILD_START=$(date +"%s")
 tcdir=${HOME}/android/TOOLS/GCC
 
+sudo apt install device-tree-compiler ccache bc
+
 [ -d "out" ] && rm -rf out && mkdir -p out || mkdir -p out
 
 [ -d $tcdir ] && \
